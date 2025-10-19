@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Done</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("MAINBG3.png") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: black;
+            overflow: hidden;
+            position: relative;
+        }
+        /* 🔹 Logo + App Name */
+        
+        .brand {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .brand img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+        
+        .brand span {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FF5B00;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        }
+        /* Phone frame */
+        
+        .phone {
+            width: 360px;
+            height: 670px;
+            background: #fff;
+            border: 6px solid #FF5B00;
+            border-radius: 35px;
+            box-shadow: 0 0 15px rgba(255, 91, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #FF5B00;
+        }
+        
+        .header .back {
+            margin-right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        /* Check Icon */
+        
+        .checkmark {
+            font-size: 70px;
+            color: #28a745;
+            margin: 20px 0 10px;
+        }
+        
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 20px;
+        }
+        /* Cost Details Box */
+        
+        .details {
+            background: #fff5ef;
+            border: 2px solid #FF5B00;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+            margin: auto;
+            width: 90%;
+            text-align: left;
+        }
+        
+        .details p {
+            margin: 8px 0;
+        }
+        /* Pay Now Button */
+        
+        .pay-btn {
+            width: 90%;
+            margin: 20px auto;
+            padding: 12px;
+            border: 2px solid #FF5B00;
+            border-radius: 8px;
+            background: #fff;
+            color: #FF5B00;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+        
+        .pay-btn:hover {
+            background: #FF5B00;
+            color: #fff;
+        }
+        /* Hide brand in phone full-screen mode */
+        
+        @media (max-width: 768px) {
+            .brand {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🔹 Logo + App Name -->
+    <div class="brand">
+        <img src="logo.png" alt="Logo">
+        <span>LockerApp</span>
+    </div>
+
+    <div class="phone">
+        <!-- Header -->
+        <div class="header">
+            <div class="back" onclick="goBack()">&#8592;</div>
+            Delivery Status
+        </div>
+
+        <!-- Checkmark -->
+        <div class="checkmark">✔</div>
+        <div class="title">Delivery Done</div>
+
+        <!-- Cost Details -->
+        <div class="details">
+            <p><strong>Total Cost:</strong> ₹250 ✅</p>
+            <p><strong>Locker Cost:</strong> ₹150</p>
+            <p><strong>Delivery Cost:</strong> ₹100</p>
+        </div>
+
+        <!-- Button -->
+        <button class="pay-btn" onclick="payNow()">Pay Now</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function payNow() {
+            alert("Redirecting to Payment Gateway...");
+            window.location.href = "payment.html"; // Replace with actual payment page
+        }
+    </script>
+</body>
+
+</html>

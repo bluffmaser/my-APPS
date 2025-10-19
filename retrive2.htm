@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Tracking</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("MAINBG3.png") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: black;
+            overflow: hidden;
+            position: relative;
+        }
+        /* 🔹 Logo + App Name */
+        
+        .brand {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .brand img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .brand span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF5B00;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+        /* Phone frame */
+        
+        .phone {
+            width: 360px;
+            height: 700px;
+            background: #fff;
+            border: 6px solid #FF5B00;
+            border-radius: 35px;
+            box-shadow: 0 0 15px rgba(255, 91, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #FF5B00;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .header .back {
+            margin-right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        /* Map Area */
+        
+        #map {
+            flex: 1;
+            border-top: 2px solid #ddd;
+            border-bottom: 2px solid #ddd;
+        }
+        /* Details Box */
+        
+        .details {
+            background: #fff5ef;
+            padding: 25px;
+            border-top: 2px solid #FF5B00;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            min-height: 220px;
+        }
+        
+        .details-text {
+            font-size: 15px;
+            color: black;
+            line-height: 1.6;
+        }
+        
+        .details-text p {
+            margin: 8px 0;
+        }
+        /* QR Code Box */
+        
+        .qr-box {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #FF5B00;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            text-align: center;
+            color: #FF5B00;
+            cursor: pointer;
+            background: #fff;
+        }
+        /* Continue Button */
+        
+        .continue-btn {
+            width: 90%;
+            margin: 15px auto;
+            padding: 12px;
+            border: 2px solid #FF5B00;
+            border-radius: 8px;
+            background: #fff;
+            color: #FF5B00;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+        
+        .continue-btn:hover {
+            background: #FF5B00;
+            color: #fff;
+        }
+        /* 🔹 Mobile view adjustments */
+        
+        @media (max-width: 768px) {
+            body {
+                background: url("bg.jpg") no-repeat center center fixed;
+                background-size: cover;
+            }
+            .phone {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .brand {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Brand outside phone -->
+    <div class="brand">
+        <img src="logo.png" alt="Logo">
+        <span>LockerApp</span>
+    </div>
+
+    <div class="phone">
+        <!-- Header -->
+        <div class="header">
+            <div class="back" onclick="goBack()">&#8592;</div>
+            Delivery Tracking
+        </div>
+
+        <!-- Map -->
+        <div id="map"></div>
+
+        <!-- Bottom Details -->
+        <div class="details">
+            <div class="details-text">
+                <p><strong>Locker Cost:</strong> ₹250</p>
+                <p><strong>OTP:</strong> 123456</p>
+                <p><strong>Locker No:</strong> L-09</p>
+                <p><strong>Locker Size:</strong> Medium</p>
+                <p><strong>Locker Time:</strong> 2 hrs</p>
+            </div>
+
+            <div class="qr-box">QR Code<br>Scan</div>
+        </div>
+
+        <!-- Continue Button -->
+        <button class="continue-btn" onclick="goNext()">Continue</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function goNext() {
+            window.location.href = "retrive3.htm"; // change to your actual next page
+        }
+
+        function initMap() {
+            const location = {
+                lat: 17.3850,
+                lng: 78.4867
+            }; // Example Hyderabad
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: location,
+            });
+            new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+    </script>
+
+    <!-- Google Maps API -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtbFB96tt_IG5bQAxDi4iqpRzLcsi8Na8&callback=initMap"></script>
+</body>
+
+</html>

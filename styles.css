@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FF5B00; /* Initial background */
+  transition: background-color 1s ease; /* Smooth color change */
+}
+
+.container {
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.site-name {
+  font-size: 2rem;
+  font-family: Arial, sans-serif;
+  color: white;
+  margin-top: 10px;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FF5B00;
+  transition: background-color 1s ease;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.site-name {
+  font-size: 2rem;
+  color: white;
+  margin-top: 10px;
+}
+
+/* 🔹 Mobile responsive */
+@media (max-width: 600px) {
+  .logo {
+    width: 80px; /* smaller logo on mobile */
+  }
+
+  .site-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* 🔹 Tablet screens */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .logo {
+    width: 100px;
+  }
+
+  .site-name {
+    font-size: 1.8rem;
+  }
+}
+
+/* 🔹 Desktop screens */
+@media (min-width: 1025px) {
+  .logo {
+    width: 150px;
+  }
+
+  .site-name {
+    font-size: 2.5rem;
+  }
+}
+.login-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  width: 320px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .login-box {
+    width: 90%; /* full width on mobile */
+    padding: 20px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  .login-box {
+    width: 400px;
+  }
+}

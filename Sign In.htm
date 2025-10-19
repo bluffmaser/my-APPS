@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("MAINBG3.png") repeat;
+            /* 🔹 Background image */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+        /* 🔹 Logo + title outside phone (top-left corner) */
+        
+        .outside-logo {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #FF5B00;
+            font-size: 22px;
+        }
+        
+        .outside-logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #FF5B00;
+        }
+        /* Phone frame (desktop view) */
+        
+        .phone {
+            width: 360px;
+            height: 700px;
+            background: #fff;
+            border: 8px solid #FF5B00;
+            border-radius: 40px;
+            box-shadow: 0 0 20px rgba(255, 91, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        /* Speaker / notch */
+        
+        .phone::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 18px;
+            background: #FF5B00;
+            border-radius: 9px;
+        }
+        /* Inside phone content */
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #FF5B00;
+            margin-bottom: 20px;
+        }
+        
+        .screen img {
+            width: 160px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+        }
+        
+        .input-box {
+            width: 100%;
+            max-width: 260px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #FF5B00;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .btn {
+            width: 220px;
+            padding: 12px;
+            border: 2px solid #FF5B00;
+            background: transparent;
+            color: #FF5B00;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background: #FF5B00;
+            color: #fff;
+        }
+        /* 🔹 Mobile View: Fullscreen app */
+        
+        @media (max-width: 768px) {
+            body {
+                background: #fff;
+                /* Hide background on mobile */
+            }
+            .outside-logo {
+                display: none;
+                /* Hide logo/title outside phone */
+            }
+            .phone {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .phone::before {
+                display: none;
+            }
+            .screen {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🔹 Logo + Title outside phone -->
+    <div class="outside-logo">
+        <img src="logo.png" alt="App Logo">
+        <span>My App</span>
+    </div>
+
+    <!-- Full phone container -->
+    <div class="phone">
+        <div class="screen">
+            <!-- Page title -->
+            <h2>SIGN IN</h2>
+
+            <!-- App image/logo -->
+            <img src="logo.png" alt="App Illustration">
+
+            <!-- Input field -->
+            <input type="text" class="input-box" placeholder="Enter your mobile number" required>
+
+            <!-- Get OTP button -->
+            <button class="btn" onclick="location.href='OTP.htm'">GET OTP</button>
+        </div>
+    </div>
+</body>
+
+</html>

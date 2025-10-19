@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("MAINBG3.png") no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        /* 🔹 Logo + Brand Name (outside phone, top-left) */
+        
+        .brand {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .brand span {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FF5B00;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        }
+        /* Phone frame */
+        
+        .phone {
+            width: 360px;
+            height: 700px;
+            background: #fff;
+            border: 6px solid #FF5B00;
+            border-radius: 35px;
+            box-shadow: 0 0 15px rgba(255, 91, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #FF5B00;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .header .back {
+            margin-right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        /* Search bar */
+        
+        .search-box {
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .search-box input {
+            width: 90%;
+            padding: 10px;
+            border: 2px solid #FF5B00;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        /* Map area */
+        
+        .map {
+            flex: 1;
+            margin: 10px;
+            border: 2px solid #aaa;
+            border-radius: 10px;
+        }
+        /* Footer */
+        
+        .footer {
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .footer button {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #FF5B00;
+            border-radius: 8px;
+            background: transparent;
+            color: #FF5B00;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .footer button:hover {
+            background: #FF5B00;
+            color: #fff;
+        }
+        /* 🔹 Mobile view */
+        
+        @media (max-width: 768px) {
+            body {
+                background: url("bg.jpg") no-repeat center center fixed;
+                background-size: cover;
+            }
+            .phone {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            /* Hide logo + name in phone view */
+            .brand {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Brand outside phone -->
+    <div class="brand">
+        <img src="logo.png" alt="Logo">
+        <span>LockerApp</span>
+    </div>
+
+    <div class="phone">
+        <!-- Header -->
+        <div class="header">
+            <div class="back" onclick="history.back()">&#8592;</div>
+            Booking
+        </div>
+
+        <!-- Search box -->
+        <div class="search-box">
+            <input id="searchInput" type="text" placeholder="Search your location">
+        </div>
+
+        <!-- Map -->
+        <div class="map" id="map"></div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <button onclick="getCurrentLocation()">Current Location</button>
+            <button id="nextBtn" style="display:none;" onclick="goNext()">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let map, marker, autocomplete;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: 17.3850,
+                    lng: 78.4867
+                },
+                zoom: 12,
+            });
+
+            marker = new google.maps.Marker({
+                map: map
+            });
+
+            const input = document.getElementById("searchInput");
+            autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo("bounds", map);
+
+            autocomplete.addListener("place_changed", () => {
+                const place = autocomplete.getPlace();
+                if (!place.geometry || !place.geometry.location) {
+                    alert("No details found for: '" + place.name + "'");
+                    return;
+                }
+                map.setCenter(place.geometry.location);
+                map.setZoom(14);
+                marker.setPosition(place.geometry.location);
+
+                // Show "Next" button after selecting a place
+                document.getElementById("nextBtn").style.display = "block";
+            });
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((pos) => {
+                    const position = {
+                        lat: pos.coords.latitude,
+                        lng: pos.coords.longitude,
+                    };
+                    map.setCenter(position);
+                    marker.setPosition(position);
+
+                    // Show "Next" button after selecting current location
+                    document.getElementById("nextBtn").style.display = "block";
+                });
+            } else {
+                alert("Geolocation not supported!");
+            }
+        }
+
+        function goNext() {
+            window.location.href = "Book2.htm"; // change to your actual next page
+        }
+    </script>
+
+    <!-- Google Maps API -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtbFB96tt_IG5bQAxDi4iqpRzLcsi8Na8&libraries=places&callback=initMap">
+    </script>
+</body>
+
+</html>

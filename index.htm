@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("MAINBG3.png") repeat;
+            background-size: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        /* Phone frame (desktop view) */
+        
+        .phone {
+            width: 360px;
+            height: 690px;
+            background: #fff;
+            border: 8px solid #FF5B00;
+            border-radius: 40px;
+            box-shadow: 0 0 20px rgba(255, 91, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+        /* Notch */
+        
+        .phone::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 18px;
+            background: #FF5B00;
+            border-radius: 9px;
+            z-index: 2;
+        }
+        /* Inside phone screen */
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: #FF5B00;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background 1s ease;
+        }
+        /* Logo animation */
+        
+        .logo {
+            width: 150px;
+            height: auto;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: fadeZoom 1.5s forwards;
+        }
+        /* Title text */
+        
+        .title {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 0.5s;
+        }
+        /* Outside logo + name (top-left corner of website) */
+        
+        .outside-logo {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #FF5B00;
+            font-size: 20px;
+        }
+        
+        .outside-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #FF5B00;
+        }
+        
+        @keyframes fadeZoom {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        /* 🔹 Responsive behavior */
+        
+        @media (max-width: 768px) {
+            /* On mobile, phone fills the whole screen */
+            .phone {
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+                border: none;
+                box-shadow: none;
+            }
+            .phone::before {
+                display: none;
+                /* Hide notch on mobile */
+            }
+            .outside-logo {
+                display: none;
+                /* Hide outside logo on mobile */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🔹 Logo + Name outside phone (TOP-LEFT, only on desktop) -->
+    <div class="outside-logo">
+        <img src="logo.png" alt="App Logo">
+        <span>My App</span>
+    </div>
+
+    <div class="phone">
+        <div class="screen" id="screen">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1 class="title" id="title">My App</h1>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            const screen = document.getElementById("screen");
+            screen.style.background = "#fff";
+            document.getElementById("title").style.color = "#FF5B00";
+        }, 2000);
+
+        // 🔹 Redirect to dashboard after 3 seconds
+        setTimeout(() => {
+            window.location.href = "login.htm";
+        }, 3000);
+    </script>
+</body>
+
+</html>

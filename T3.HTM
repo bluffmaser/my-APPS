@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Locker & Time</title>
+
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* 🔹 Background image */
+            background: url("MAINBG3.png") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: black;
+            overflow: hidden;
+        }
+        /* 🔹 Logo + App Name (top-left outside phone for desktop) */
+        
+        .brand {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .brand img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+        
+        .brand span {
+            font-size: 22px;
+            font-weight: bold;
+            color: #FF5B00;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .phone {
+            width: 360px;
+            height: 700px;
+            background: #fff;
+            border: 6px solid #FF5B00;
+            border-radius: 35px;
+            box-shadow: 0 0 15px rgba(255, 91, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #FF5B00;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .header .back {
+            margin-right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        /* 🔹 Mini brand (inside phone, only for mobile) */
+        
+        .mini-brand {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            position: absolute;
+            right: 15px;
+        }
+        
+        .mini-brand img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+        
+        .mini-brand span {
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .content {
+            padding: 20px;
+            flex: 1;
+            color: black;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px solid #FF5B00;
+            border-radius: 12px;
+            color: black;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .section h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            color: black;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        
+        .input-field {
+            margin: 8px 0;
+        }
+        
+        .input-field input {
+            border: 2px solid #FF5B00 !important;
+            border-radius: 8px !important;
+            padding: 6px 10px !important;
+            font-size: 13px !important;
+            height: 35px !important;
+            width: 80% !important;
+            margin: 0 auto;
+            display: block;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            background: white;
+        }
+        
+        .input-field label {
+            font-size: 13px !important;
+            color: black !important;
+            left: 12px !important;
+        }
+        
+        .continue-btn {
+            width: 80%;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #FF5B00;
+            border-radius: 8px;
+            background: #fff;
+            color: #FF5B00;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+        
+        .continue-btn:hover,
+        .continue-btn:active {
+            background: #FF5B00;
+            color: #fff;
+        }
+        /* 🔹 Mobile view */
+        
+        @media (max-width: 768px) {
+            .brand {
+                display: none;
+            }
+            .mini-brand {
+                display: flex;
+            }
+            .phone {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Logo + App Name (desktop view) -->
+    <div class="brand">
+        <img src="logo.png" alt="App Logo">
+        <!-- Replace with your logo -->
+        <span>LockerApp</span>
+    </div>
+
+    <div class="phone">
+        <!-- Header -->
+        <div class="header">
+            <div class="back" onclick="goBack()">&#8592;</div>
+            Select Locker & Time
+
+            <!-- Mini Logo + Name (only mobile view) -->
+            <div class="mini-brand">
+                <img src="logo.png" alt="Mini Logo">
+                <span>LockerApp</span>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="section">
+                <h3>About the Locker</h3>
+                <p>Large locker – You can store up to 3 big bags safely.</p>
+            </div>
+
+            <div class="section">
+                <h3>About the Costing</h3>
+                <p>₹150 for 4 hours, ₹250 for 8 hours, ₹400 for 24 hours.</p>
+            </div>
+
+            <div class="section">
+                <h3>Select Time</h3>
+
+                <div class="input-field">
+                    <input type="text" class="datepicker" id="fromDate">
+                    <label for="fromDate">Select Date</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" class="timepicker" id="time">
+                    <label for="time">Select Time</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue button -->
+        <button class="continue-btn" onclick="continueBooking()">Continue</button>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateElems = document.querySelectorAll('.datepicker');
+            M.Datepicker.init(dateElems, {
+                autoClose: true,
+                format: 'dd-mm-yyyy'
+            });
+
+            const timeElems = document.querySelectorAll('.timepicker');
+            M.Timepicker.init(timeElems, {
+                twelveHour: true,
+                autoClose: true
+            });
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function continueBooking() {
+            const fromDate = document.getElementById("fromDate").value;
+            const time = document.getElementById("time").value;
+
+            if (!fromDate || !time) {
+                alert("Please select date and time!");
+                return;
+            }
+
+            window.location.href = "payment.htm"; // ✅ Redirect to next page
+        }
+    </script>
+</body>
+
+</html>

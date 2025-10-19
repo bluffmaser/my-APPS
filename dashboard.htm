@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard with Side Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("MAINBG3.png") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        /* Phone frame (default for desktop) */
+        
+        .phone {
+            width: 360px;
+            height: 690px;
+            background: #fff;
+            border: 8px solid #FF5B00;
+            border-radius: 40px;
+            box-shadow: 0 0 20px rgba(255, 91, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Notch */
+        
+        .phone::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 18px;
+            background: #FF5B00;
+            border-radius: 9px;
+        }
+        /* Top bar inside phone */
+        
+        .top-bar {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .profile img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #FF5B00;
+        }
+        
+        .menu {
+            font-size: 28px;
+            cursor: pointer;
+            color: #FF5B00;
+            transition: color 0.3s ease;
+        }
+        
+        .menu.active {
+            color: white;
+        }
+        /* Screen content */
+        
+        .screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            margin-top: -40px;
+        }
+        
+        h2 {
+            color: #FF5B00;
+            margin-bottom: 12px;
+        }
+        
+        p {
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #555;
+        }
+        /* Buttons */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 130px;
+            padding: 12px;
+            margin: 10px;
+            border: 2px solid #FF5B00;
+            border-radius: 10px;
+            background: #fff;
+            color: #FF5B00;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: #FF5B00;
+            color: #fff;
+        }
+        
+        .btn-large {
+            width: 280px;
+            margin-top: 20px;
+        }
+        
+        .btn-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            border-radius: 25px;
+        }
+        /* Side menu */
+        
+        .side-menu {
+            position: absolute;
+            top: 0;
+            right: -120px;
+            width: 120px;
+            height: 100%;
+            background: #FF5B00;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 10px;
+            box-sizing: border-box;
+            transition: right 0.3s ease-in-out;
+            z-index: 5;
+        }
+        
+        .side-menu.active {
+            right: 0;
+        }
+        
+        .side-menu a {
+            color: white;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .side-menu a:hover {
+            text-decoration: underline;
+        }
+        /* Outside logo + name (top-left of webpage) */
+        
+        .outside-logo {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #FF5B00;
+            font-size: 20px;
+        }
+        
+        .outside-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        /* ✅ Responsive adjustments */
+        
+        @media (max-width: 768px) {
+            body {
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+            .outside-logo {
+                display: none;
+                /* hide outside logo on mobile */
+            }
+            .phone {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .phone::before {
+                display: none;
+                /* hide notch on mobile */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Outside logo (desktop only) -->
+    <div class="outside-logo">
+        <img src="logo.png" alt="App Logo">
+        <span>My App</span>
+    </div>
+
+    <div class="phone">
+        <!-- Top bar inside phone -->
+        <div class="top-bar">
+            <div class="profile" onclick="location.href='profile.html'">
+                <img src="logo.png" alt="User">
+            </div>
+            <div class="menu" id="menuBtn">&#9776;</div>
+        </div>
+
+        <!-- Side Menu -->
+        <div class="side-menu" id="sideMenu">
+            <a href="home.html">Home</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="retrieve.html">Retrieve</a>
+            <a href="vehicle-care.html">Vehicle Care</a>
+            <a href="logout.html">Logout</a>
+        </div>
+
+        <!-- Screen middle content -->
+        <div class="screen">
+            <h2>Dashboard</h2>
+            <p>Some quotation about app</p>
+            <div style="display:flex; justify-content:center;">
+                <a href="Book.htm" class="btn">Book</a>
+                <a href="retrive.htm" class="btn">Retrieve</a>
+            </div>
+            <a href="vehicle-care.html" class="btn btn-large">All-in-One Vehicle Care</a>
+        </div>
+
+        <!-- Bottom fixed button -->
+        <a href="your-booking.html" class="btn btn-large btn-bottom">Your Booking</a>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const sideMenu = document.getElementById("sideMenu");
+
+        menuBtn.addEventListener("click", () => {
+            menuBtn.classList.toggle("active");
+            sideMenu.classList.toggle("active");
+
+            if (menuBtn.textContent === "☰") {
+                menuBtn.textContent = "✖";
+            } else {
+                menuBtn.textContent = "☰";
+            }
+        });
+    </script>
+</body>
+
+</html>

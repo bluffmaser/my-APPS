@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("MAINBG3.png") repeat;
+            /* 🔹 Website background */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+        /* 🔹 Logo + title outside phone (top-left corner) */
+        
+        .outside-logo {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #FF5B00;
+            font-size: 22px;
+        }
+        
+        .outside-logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #FF5B00;
+        }
+        /* Phone frame (default desktop) */
+        
+        .phone {
+            width: 360px;
+            height: 700px;
+            background: #fff;
+            border: 8px solid #FF5B00;
+            border-radius: 40px;
+            box-shadow: 0 0 20px rgba(255, 91, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        /* Speaker / notch */
+        
+        .phone::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 18px;
+            background: #FF5B00;
+            border-radius: 9px;
+            z-index: 2;
+        }
+        /* Inside phone content */
+        
+        .screen {
+            width: 85%;
+            height: 85%;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 20px;
+        }
+        
+        .screen img {
+            width: 160px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+        }
+        
+        .btn {
+            display: block;
+            width: 200px;
+            padding: 12px;
+            margin: 10px auto;
+            border: 2px solid #FF5B00;
+            background: transparent;
+            color: #FF5B00;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background: #FF5B00;
+            color: #fff;
+        }
+        /* 🔹 Mobile View: Fullscreen app look */
+        
+        @media (max-width: 768px) {
+            body {
+                background: #fff;
+                /* hide outer background on mobile */
+            }
+            .outside-logo {
+                display: none;
+                /* hide logo/title outside phone */
+            }
+            .phone {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .phone::before {
+                display: none;
+            }
+            .screen {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🔹 Logo + Title outside phone (Top-left corner) -->
+    <div class="outside-logo">
+        <img src="logo.png" alt="App Logo">
+        <span>My App</span>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone">
+        <div class="screen">
+            <!-- App image/logo -->
+            <img src="logo.png" alt="App Illustration">
+
+            <!-- Buttons -->
+            <button class="btn" onclick="location.href='sign in.htm'">SIGN IN</button>
+            <button class="btn" onclick="location.href='signup.htm'">SIGN UP</button>
+        </div>
+    </div>
+</body>
+
+</html>

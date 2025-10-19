@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("MAINBG3.png");
+            /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        /* 🔹 Logo + Name outside phone */
+        
+        .branding {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .branding img {
+            width: 45px;
+            height: 45px;
+            margin-right: 10px;
+            border-radius: 50%;
+            /* ✅ makes logo round */
+            border: 2px solid #FF5B00;
+            /* optional outline */
+            object-fit: cover;
+            /* keeps image inside circle */
+        }
+        
+        .branding span {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FF5B00;
+        }
+        /* Phone frame */
+        
+        .phone {
+            width: 360px;
+            height: 700px;
+            background: #fff;
+            border: 6px solid #FF5B00;
+            border-radius: 35px;
+            box-shadow: 0 0 15px rgba(255, 91, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #FF5B00;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .header .back {
+            margin-right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        /* Map area */
+        
+        #map {
+            flex: 1;
+            margin: 10px;
+            border: 2px solid #aaa;
+            border-radius: 10px;
+        }
+        /* Options box */
+        
+        .options {
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #FF5B00;
+            border-radius: 12px;
+            background: #fff5ef;
+        }
+        
+        .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .option:hover {
+            background: #fff0e6;
+        }
+        
+        .option span {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+        
+        .cost {
+            font-weight: bold;
+            color: #FF5B00;
+        }
+        /* Mobile view full screen */
+        
+        @media (max-width: 768px) {
+            .phone {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            /* Hide logo+name in mobile */
+            .branding {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Logo + Name outside phone -->
+    <div class="branding">
+        <img src="logo.png" alt="Logo">
+        <span>MyLocker</span>
+    </div>
+
+    <!-- Phone frame -->
+    <div class="phone">
+        <!-- Header -->
+        <div class="header">
+            <div class="back" onclick="goBack()">&#8592;</div>
+            Booking
+        </div>
+
+        <!-- Map -->
+        <div id="map"></div>
+
+        <!-- Options -->
+        <div class="options">
+            <div class="option" onclick="goToPage('small.htm')">
+                <span><img src="small-locker.png" alt="Small Locker"> Small</span>
+                <span class="cost">show cost</span>
+            </div>
+            <div class="option" onclick="goToPage('medium.htm')">
+                <span><img src="medium-locker.png" alt="Medium Locker"> Medium</span>
+                <span class="cost">show cost</span>
+            </div>
+            <div class="option" onclick="goToPage('large.htm')">
+                <span><img src="large-locker.png" alt="Large Locker"> Large</span>
+                <span class="cost">show cost</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let map, marker;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: 17.3850,
+                    lng: 78.4867
+                }, // Default Hyderabad
+                zoom: 12,
+            });
+
+            marker = new google.maps.Marker({
+                position: {
+                    lat: 17.3850,
+                    lng: 78.4867
+                },
+                map: map,
+            });
+        }
+
+        function goToPage(page) {
+            window.location.href = page;
+        }
+
+        function goBack() {
+            window.location.href = "index.html"; // change this to your previous page
+        }
+    </script>
+
+    <!-- Google Maps API -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtbFB96tt_IG5bQAxDi4iqpRzLcsi8Na8&callback=initMap">
+    </script>
+</body>
+
+</html>
